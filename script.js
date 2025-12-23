@@ -84,7 +84,7 @@ function getPlaceholder(type) {
 // Download button
 downloadBtn.addEventListener('click', () => {
     if (!qrCodeUrl) {
-        messageDiv.textContent = '請先輸入內容以生成 QR 碨';
+        messageDiv.textContent = '請先輸入內容以生成 QR碼';
         messageDiv.style.color = '#f44336';
         return;
     }
@@ -106,7 +106,7 @@ downloadBtn.addEventListener('click', () => {
 // Copy button
 copyBtn.addEventListener('click', () => {
     if (!qrCodeUrl) {
-        messageDiv.textContent = '請先輸入內容以生成 QR 碨';
+        messageDiv.textContent = '請先輸入內容以生成 QR碼';
         messageDiv.style.color = '#f44336';
         return;
     }
