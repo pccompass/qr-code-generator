@@ -16,6 +16,14 @@ typeButtons.forEach(button => {
         button.classList.add('active');
         currentType = button.dataset.type;
         contentInput.placeholder = getPlaceholder(currentType);
+        
+            // Show/hide store code container
+                    const storeCodeContainer = document.getElementById('storeCodeContainer');
+                    if (currentType === 'storeCode') {
+                                        storeCodeContainer.style.display = 'block';
+                                    } else {
+                                        storeCodeContainer.style.display = 'none';
+                                    }
         contentInput.value = '';
         charCountSpan.textContent = '0';
         qrImage.src = '';
@@ -29,6 +37,22 @@ contentInput.addEventListener('input', () => {
     charCountSpan.textContent = contentInput.value.length;
     updateQRCode();
 });
+
+// Store code "Add" button handler
+const addStoreCodeBtn = document.getElementById('addStoreCodeBtn');
+const storeCodeInput = document.getElementById('storeCodeInput');
+if (addStoreCodeBtn) {
+        addStoreCodeBtn.addEventListener('click', () => {
+                    const storeCode = storeCodeInput.value.trim();
+                    if (storeCode) {
+                                    const baseUrl = 'https://liff.line.me/2001536419-2530jpRe/';
+                                    const fullUrl = baseUrl + storeCode;
+                                    contentInput.value = fullUrl;
+                                    charCountSpan.textContent = fullUrl.length;
+                                    updateQRCode();
+                                }
+                });
+    }
 
 // Generate QR code
 function updateQRCode() {
@@ -76,7 +100,8 @@ function getPlaceholder(type) {
         'sms': '輸入電話號碼',
         'geo': '輸入座標 (lat,lng)',
         'wifi': '輸入 WiFi 設定',
-        'vcard': '輸入卡號人直訊'
+        'vcard': '輸入卡號人直訊',
+                'storeCode': '適用閾确認你的商店代誢'
     };
     return placeholders[type] || '輸入內容...';
 }
